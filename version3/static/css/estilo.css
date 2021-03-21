@@ -1,0 +1,106 @@
+body{
+	text-align: center;
+	font-size: 20px;
+}
+
+.contenedor{
+	margin: auto;
+	max-width: 600px;
+}
+
+table{
+	text-align: center;
+}
+
+.boton_rojo {
+	width: 100%;
+	background-color: #eb6b34;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+input[type=text], input[type=password] {
+		width: 100%;
+		padding: 12px 20px;
+		margin: 8px 0;
+		display: inline-block;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		box-sizing: border-box;
+}
+
+.font20{
+	font-size: 20px;
+}
+
+input[type=submit] {
+		width: 100%;
+		background-color: #4CAF50;
+		color: white;
+		padding: 14px 20px;
+		margin: 8px 0;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		font-size: 20px;
+}
+
+input[type=submit]:hover {
+		background-color: #45a049;
+}
+
+div {
+		border-radius: 5px;
+		background-color: #f2f2f2;
+		padding: 20px;
+}
+
+.logo{
+	width: 150px;
+	height: 150px;
+}
+
+.accordion {
+  background-color: #ff8c00;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 40	px;
+  transition: 0.4s;
+}
+
+.active, .accordion:hover {
+  background-color: #2cc400;
+}
+
+.panel {
+  padding: 0 18px;
+  display: none;
+  background-color: white;
+  overflow: hidden;
+}
+
+
+form{ width:auto; margin:0 auto; padding:10px; border: 1px solid #d9d9d9;}
+form p, form input[type = "submit"]{text-align:center; font-size:20px;}
+
+
+input[type = "radio"]{ display:none;/*position: absolute;top: -1000em;*/}
+label{ color:grey;}
+
+.clasificacion{
+    direction: rtl;
+    unicode-bidi: bidi-override;
+}
+
+label:hover,
+label:hover ~ label{color:orange;}
+input[type = "radio"]:checked ~ label{color:orange;}
