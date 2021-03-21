@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>Choferes disponibles</h1>
+<h3>{{ asientos }} asiento/s desde {{ datos_barrio.nombre_barrio }} hasta colegio {{ datos_colegio.nombre_colegio }}</h3>
+
+<h2>Tarifa: ${{ datos_tarifa }}</h2>
+<br>
+<iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!{{datos_barrio.ubicacion}}{{datos_colegio.direccion_colegio}}" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+
+{% for instance in datos_choferes %}
+<button class="accordion">{{ instance.nombre_chofer }}</button>
+<div class="panel">
+	<table>
+		<tr>
+			<!--<td>Puntuación</td>
+			-->
+			<td>Nombre: </td>
+		</tr>
+		<tr>
+			<!--<td>{{ instance.calif_chofer }} </td>
+			-->
+			<td>{{ instance.nombre_chofer }}</td>
+			<td>
+	  </tr>
+		<tr>
+			<td><br>Descripcion:
+				<br>
+				{{ instance.description_chofer }}
+				</td>
+				</tr>
+
+	</table>
+<form action="{% url 'contratar' %}" method='POST'>
+	{% csrf_token %}
+	<label for="comentarios">Comentarios: </label>
+	<input type="text" id="comentarios" name="comentarios">
+	<input type="submit" value="Contratar" />
+	<input type="hidden" name="id_chofer1" value='{{ instance.id_chofer }}'>
+	<input type="hidden" name="email_chofer" value='{{ instance.email_chofer }}'>
+	<input type="hidden" name="direccion" value='{{ direccion }}'>
+	<input type="hidden" name="barrio" value='{{ datos_barrio }}'>
+	<input type="hidden" name="colegio" value='{{ datos_colegio }}'>
+	<input type="hidden" name="nombre_barrio" value='{{ datos_barrio.nombre_barrio }}'>
+	<input type="hidden" name="nombre_colegio" value='{{ datos_colegio.nombre_colegio }}'>
+	<input type="hidden" name="asientos" value='{{ asientos }}'>
+	<input type="hidden" name="tarifa" value='{{ datos_tarifa }}'>
+	<input type="hidden" name="fecha" value='{{ fecha }}'>
+	<input type="hidden" name="hora" value='{{ hora }}'>
+</form>
+</div>
+{% endfor %}
+
+
+
+<a href="/buscarchofer"><input type="submit" value="Volver" /></a>
+</div>
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+	acc[i].addEventListener("click", function() {
+		this.classList.toggle("active");
+		var panel = this.nextElementSibling;
+		if (panel.style.display === "block") {
+			panel.style.display = "none";
+		} else {
+			panel.style.display = "block";
+		}
+	});
+}
+</script>
+
+{% endblock %}

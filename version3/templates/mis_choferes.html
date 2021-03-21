@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>Mis Choferes</h1>
+<br>
+<table>
+  <tr>
+    <td>Nombre</td>
+    <td>Direccion</td>
+		<td>Barrio</td>
+		<td>Colegio</td>
+		<td>Cantidad de asientos</td>
+    <td>Fecha y Hora </td>
+  </tr>
+{% for instance in contratos_list %}
+  <tr>
+    <td>{{ instance.id_chofer }} </td>
+		<td>{{ instance.direccion }}</td>
+		<td>{{ instance.barrio }} </td>
+		<td>{{ instance.destino }} </td>
+		<td>{{ instance.cant_asientos }} </td>
+    <td>{{ instance.fecha }} / {{ instance.hora }}</td>
+		<td>
+			<form action="{% url 'finalizar' %}" method='POST'>
+				{% csrf_token %}
+			<button type="submit">Finalizar</button>
+			<input type="hidden" name="cant_asientos" value='{{ instance.cant_asientos }}'>
+			<input type="hidden" name="direccion" value='{{ instance.direccion }}'>
+			<input type="hidden" name="destino" value='{{ instance.destino }}'>
+			<input type="hidden" name="id_contrato" value='{{ instance.id_contrato }}'>
+			<input type="hidden" name="id_chofer1" value='{{ instance.id_chofer.id_chofer }}'>
+			<input type="hidden" name="email_chofer" value='{{ instance.id_chofer.email_chofer }}'>
+			</form>
+</td>
+		</tr>
+{% endfor %}
+</table>
+
+<br><br>
+<a href="/"><input type="submit" value="Volver" /></a>
+{% endblock %}

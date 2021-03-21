@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>Calificar Chofer</h1>
+<table>
+  <tr>
+    <!--<td>Puntuación</td>-->
+    <td>Nombre: </td>
+  </tr>
+{% for instance in datos_chofer %}
+  <tr>
+    <!--<td>
+      {% for i in datos_chofer %}
+        <input id="radio{{ instance.calif_chofer }}" type="radio" name="estrellas" value="{{ instance.calif_chofer }}">
+        <label for="radio{{ instance.calif_chofer }}">★</label>
+      {% endfor %}
+    </td>-->
+		<td>{{ instance.nombre_chofer }}</td>
+		<td>
+  </tr>
+  <tr>
+    <!--
+		<td><br>Descripcion:
+			<br>
+			{{ instance.description_chofer }}
+		</td>
+  -->
+    <td>
+      <form action="{% url 'cancelar' %}" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="email_chofer" value='{{ instance.email_chofer }}'>
+        <p class="clasificacion">
+             <input id="radio1" type="radio" name="estrellas" value="5"><!--
+          --><label for="radio1">★</label><!--
+          --><input id="radio2" type="radio" name="estrellas" value="4"><!--
+          --><label for="radio2">★</label><!--
+          --><input id="radio3" type="radio" name="estrellas" value="3"><!--
+          --><label for="radio3">★</label><!--
+          --><input id="radio4" type="radio" name="estrellas" value="2"><!--
+          --><label for="radio4">★</label><!--
+          --><input id="radio5" type="radio" name="estrellas" value="1"><!--
+          --><label for="radio5">★</label>
+					</p>
+          {% for instance in id_contrato %}
+          <br>
+          <input type="hidden" name="id_contrato" value='{{ instance.id_contrato }}'>
+          <!--
+          <p><input type="submit" value="Calificar" name="submit" /></p>
+          -->
+          {% endfor %}
+          <label for="comentario">Deja un comentario: </label>
+          <input id="comentario" type="text" name="comentario" />
+          <p><button type="submit">Calificar</button></p>
+
+      </form>
+    </td>
+  </tr>
+</table>
+{% endfor %}
+<a href="/mischoferes"><input type="submit" value="Volver" /></a>
+{% endblock %}

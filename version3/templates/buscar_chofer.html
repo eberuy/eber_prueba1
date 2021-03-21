@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Buscar Chofer</h2>
+
+<form action="{% url 'buscarchofer' %}" method="POST">
+	{% csrf_token %}
+	<label for="dir">Direccion:</label>
+	<input id="dir" type="text" name="direccion" required>
+	<br><br>
+	<label for="barrio">Barrio:</label>
+	<select name="barrio" class="font20" id="barrio" required>
+		{% for instance in datos_barrios %}
+		<option value="{{ instance.id_barrio }}">{{ instance.nombre_barrio }}</option>
+		{% endfor %}
+	</select>
+		<br><br>
+		<label for="colegio">Colegio:</label>
+		<select name="colegio" class="font20" id="colegio" required>
+			{% for instance in datos_colegios %}
+			<option value="{{ instance.id_colegio }}">{{ instance.nombre_colegio }}</option>
+			{% endfor %}
+		</select>
+		<br><br>
+		<label for="fecha">Fecha: </label>
+		<input type="date" id="fecha" name="fecha" required>
+		<label for="hora">Hora: </label>
+		<input type="time" id="hora" name="hora" required>
+		<br><br>
+		<label for="asientos">Asientos:</label>
+		<select class="font20" name="asientos" id="asientos" required>
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+		</select>
+		<br><br>
+		<input type="submit" value="Buscar">
+	</form>
+	<a href="/"><input type="submit" value="Volver"></a>	
+{% endblock %}

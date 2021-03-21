@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+	{% block content %}
+	{% load static %}
+<h1>Eber</h1>
+	<img src="{% static 'images/logo.png' %}" class="logo">
+<form method="POST">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <input type="submit" value="ENTRAR">
+</form>
+
+<hr />
+<a href="/reset-password"><input type="submit" value="Olvidé mi Contraseña" /></a>
+<br>
+ <a href="/register"><input type="submit" value="Registrar Usuario" /></a>
+
+{% endblock %}

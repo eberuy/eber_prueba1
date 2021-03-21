@@ -1,0 +1,16 @@
+{% load static %}
+<html>
+
+	<head>
+		<link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+	{% block title %}
+	{% endblock title %}
+	</head>
+	<body>
+
+	<div class="contenedor">
+		{% block content %}
+		{% endblock content %}
+		</div>
+	</body>
+</html>
