@@ -41,6 +41,7 @@ urlpatterns = [
 	path('mostrarchoferes', views.buscarchofer, name="mostrarchoferes"),
 	path('finalizar', views.finalizar, name="finalizar"),
 	path('loginchofer', ChoferLoginViewSet.as_view(), name='loginchofer'),
+	path('viajeschofer', ChoferViajesViewSet.as_view({'get': 'list'}), name='viajeschofer'),
 ]
 
 

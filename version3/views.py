@@ -212,7 +212,7 @@ def logout(request):
 	# views.py
 from rest_framework import viewsets 
 
-from .serializers import ChoferSerializer 
+from .serializers import ChoferSerializer, ContratoSerializer
 from .models import Chofer
 from rest_framework.generics import(ListCreateAPIView)
 
@@ -225,3 +225,12 @@ class ChoferLoginViewSet (ListCreateAPIView):
     	ps= self.request.GET.get('ps')
     	chofer = Chofer.objects.filter(email_chofer= em, pass_chofer= ps)
     	return chofer
+
+class ChoferViajesViewSet (viewsets.ModelViewSet): 
+     
+    serializer_class = ContratoSerializer
+    def get_queryset(self): 
+    	
+    	id_chofer= self.request.GET.get('id')
+    	viajes = Contrato.objects.filter(id_chofer= id_chofer, estado = 1)
+    	return viajes
