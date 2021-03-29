@@ -35,6 +35,8 @@
 	{% csrf_token %}
 	<label for="comentarios">Comentarios: </label>
 	<input type="text" id="comentarios" name="comentarios">
+	<label for="telefono">Telefono de contacto: </label>
+	<input type="text" id="telefono" name="telefono">
 	<input type="submit" value="Contratar" />
 	<input type="hidden" name="id_chofer1" value='{{ instance.id_chofer }}'>
 	<input type="hidden" name="email_chofer" value='{{ instance.email_chofer }}'>
