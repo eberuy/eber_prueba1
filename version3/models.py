@@ -56,6 +56,7 @@ class Contrato(models.Model):
 	comentarios = models.TextField(null=True, blank=True)
 	fecha = models.CharField(null=False, max_length=20, default='2020-03-11')
 	hora = models.CharField(null=False, max_length=10, default='07:00')
+	telefono = models.CharField(null=False,max_length=12, default='0' )
 
 	class Meta:
 		verbose_name_plural = 'contratos'

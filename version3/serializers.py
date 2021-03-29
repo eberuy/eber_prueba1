@@ -12,5 +12,5 @@ class ContratoSerializer(serializers.HyperlinkedModelSerializer):
 	# choferes = serializers.PrimaryKeyRelatedField(many = True, read_only = True)
 	class Meta: 
 		model = Contrato
-		fields = ('id_contrato', 'id_usuario', 'direccion', 'barrio', 'destino', 'cant_asientos', 'estado', 'comentarios', 'fecha', 'hora')
+		fields = ('id_contrato', 'id_usuario', 'direccion', 'barrio', 'destino', 'cant_asientos', 'estado', 'comentarios', 'fecha', 'hora' , 'telefono')
 		
