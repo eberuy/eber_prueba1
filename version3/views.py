@@ -110,6 +110,7 @@ def contratar(request):
 	destino=request.POST.get('colegio')
 	cant_asientos=request.POST.get('asientos')
 	comentarios=request.POST.get('comentarios')
+	telefono=request.POST.get('telefono')
 	tarifa=request.POST.get('tarifa')
 	fecha=request.POST.get('fecha')
 	hora=request.POST.get('hora')
@@ -123,6 +124,7 @@ def contratar(request):
 	destino=destino,
 	cant_asientos=cant_asientos,
 	comentarios=comentarios,
+	telefono=telefono,
 	estado=1)
 	contrato1.save()
 	datos_chofer=Chofer.objects.get(id_chofer=request.POST.get('id_chofer1'))
@@ -212,7 +214,7 @@ def logout(request):
 	# views.py
 from rest_framework import viewsets 
 
-from .serializers import ChoferSerializer 
+from .serializers import ChoferSerializer, ContratoSerializer
 from .models import Chofer
 from rest_framework.generics import(ListCreateAPIView)
 
@@ -225,3 +227,12 @@ class ChoferLoginViewSet (ListCreateAPIView):
     	ps= self.request.GET.get('ps')
     	chofer = Chofer.objects.filter(email_chofer= em, pass_chofer= ps)
     	return chofer
+
+class ChoferViajesViewSet (viewsets.ModelViewSet): 
+     
+    serializer_class = ContratoSerializer
+    def get_queryset(self): 
+    	
+    	id_chofer= self.request.GET.get('id')
+    	viajes = Contrato.objects.filter(id_chofer= id_chofer, estado = 1)
+    	return viajes
