@@ -42,7 +42,7 @@ urlpatterns = [
 	path('finalizar', views.finalizar, name="finalizar"),
 	path('loginchofer', ChoferLoginViewSet.as_view(), name='loginchofer'),
 	path('viajeschofer', ChoferViajesViewSet.as_view({'get': 'list'}), name='viajeschofer'),
-	path('finalizar_viaje' , views.finaliar_viaje, name='finalizar_viaje'),
+	path('finalizar_viaje' , views.finalizar_viaje, name='finalizar_viaje'),
 ]
 
 
