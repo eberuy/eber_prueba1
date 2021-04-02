@@ -236,3 +236,7 @@ class ChoferViajesViewSet (viewsets.ModelViewSet):
     	id_chofer= self.request.GET.get('id')
     	viajes = Contrato.objects.filter(id_chofer= id_chofer, estado = 1)
     	return viajes
+
+def finalizar_viaje(request):
+	contrato = Contrato.objects.filter(id_contrato =request.GET.get('contrato'), id_chofer = request.GET.get('chofer')).update(estado=0)
+	return redirect('/')
