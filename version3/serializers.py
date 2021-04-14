@@ -17,4 +17,4 @@ class ContratoSerializer(serializers.HyperlinkedModelSerializer):
 class UserSerializer(serializers.HyperlinkedModelSerializer): 
     class Meta: 
         model = User
-        fields = ('id', 'name', 'email')
+        fields = ('id', 'username', 'email')
