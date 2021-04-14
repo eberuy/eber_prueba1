@@ -240,14 +240,6 @@ def finalizar_viaje(request):
 	contrato = Contrato.objects.filter(id_contrato =request.GET.get('contrato'), id_chofer = request.GET.get('chofer')).update(estado=0)
 	return redirect('/')
 
-def datos_usuario(viewsets.ModelViewSet):
-    serializer_class = USerializer
-    def get_queryset(self): 
-    	
-    	id_chofer= self.request.GET.get('id')
-    	viajes = Contrato.objects.filter(id_chofer= id_chofer, estado = 1)
-    	return viajes
-
 class ChoferViajesViewSet2 (viewsets.ModelViewSet):     
     serializer_class = ContratoSerializer
     def get_queryset(self): 
