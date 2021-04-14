@@ -1,7 +1,7 @@
 # serializers.py
 from rest_framework import serializers
 
-from .models import Chofer, Contrato
+from .models import Chofer, Contrato, User
 
 class ChoferSerializer(serializers.HyperlinkedModelSerializer): 
     class Meta: 
