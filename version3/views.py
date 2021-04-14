@@ -11,7 +11,7 @@ from django.contrib.auth.models import User
 
 from rest_framework import viewsets 
 
-from .serializers import ChoferSerializer, ContratoSerializer
+from .serializers import ChoferSerializer, ContratoSerializer, UserSerializer
 from .models import Chofer
 from rest_framework.generics import(ListCreateAPIView)
 
@@ -247,3 +247,12 @@ class ChoferViajesViewSet2 (viewsets.ModelViewSet):
     	id_chofer= self.request.GET.get('id')
     	viajes = Contrato.objects.filter(id_chofer= id_chofer, estado = 0)
     	return viajes
+
+## PRUEBA DE obtener el email del usuario para notificaciones
+class datosusuario(ListCreateAPIView):
+	serializer_class = UserSerializer
+
+	def get_queryset(self):
+		iduser = self.request.GET.get('id')
+		user = User.objects.filter(id = iduser)
+		return user
