@@ -9,6 +9,12 @@ from django.core.mail import send_mail
 from .forms import UserCreationForm, ModificationForm
 from django.contrib.auth.models import User
 
+from rest_framework import viewsets 
+
+from .serializers import ChoferSerializer, ContratoSerializer
+from .models import Chofer
+from rest_framework.generics import(ListCreateAPIView)
+
 def buscarchofer(request):
 	if request.method == "POST":
 		datos_choferes = Chofer.objects.filter(chofer_barrio__id_barrio=request.POST.get('barrio'))
@@ -211,12 +217,6 @@ def logout(request):
 	# Redireccionamos a la portada
 	return redirect('/')
 
-	# views.py
-from rest_framework import viewsets 
-
-from .serializers import ChoferSerializer, ContratoSerializer
-from .models import Chofer
-from rest_framework.generics import(ListCreateAPIView)
 
 
 class ChoferLoginViewSet (ListCreateAPIView): 
@@ -229,7 +229,6 @@ class ChoferLoginViewSet (ListCreateAPIView):
     	return chofer
 
 class ChoferViajesViewSet (viewsets.ModelViewSet): 
-     
     serializer_class = ContratoSerializer
     def get_queryset(self): 
     	
@@ -240,3 +239,19 @@ class ChoferViajesViewSet (viewsets.ModelViewSet):
 def finalizar_viaje(request):
 	contrato = Contrato.objects.filter(id_contrato =request.GET.get('contrato'), id_chofer = request.GET.get('chofer')).update(estado=0)
 	return redirect('/')
+
+def datos_usuario(viewsets.ModelViewSet):
+    serializer_class = USerializer
+    def get_queryset(self): 
+    	
+    	id_chofer= self.request.GET.get('id')
+    	viajes = Contrato.objects.filter(id_chofer= id_chofer, estado = 1)
+    	return viajes
+
+class ChoferViajesViewSet2 (viewsets.ModelViewSet):     
+    serializer_class = ContratoSerializer
+    def get_queryset(self): 
+    	
+    	id_chofer= self.request.GET.get('id')
+    	viajes = Contrato.objects.filter(id_chofer= id_chofer, estado = 0)
+    	return viajes
