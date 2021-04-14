@@ -1,6 +1,6 @@
 # serializers.py
 from rest_framework import serializers
-
+from django.contrib.auth.models import User
 from .models import Chofer, Contrato
 
 class ChoferSerializer(serializers.HyperlinkedModelSerializer): 
@@ -14,3 +14,7 @@ class ContratoSerializer(serializers.HyperlinkedModelSerializer):
 		model = Contrato
 		fields = ('id_contrato', 'id_usuario', 'direccion', 'barrio', 'destino', 'cant_asientos', 'estado', 'comentarios', 'fecha', 'hora' , 'telefono')
 		
+class UserSerializer(serializers.HyperlinkedModelSerializer): 
+    class Meta: 
+        model = User
+        fields = ('id', 'name', 'email')
