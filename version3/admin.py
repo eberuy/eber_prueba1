@@ -1,6 +1,7 @@
 from django.contrib import admin
 # the module name is app_name.models
 from version3.models import Chofer, Contrato, Barrio, Chofer_Barrio, Colegio, Tarifa
+from django.contrib.auth.models import User
 # Register your models to admin site, then you can add, edit, delete and search your models in Django admin site.
 class ChoferAdmin(admin.ModelAdmin):
 	list_display = ['id_chofer', 'nombre_chofer','email_chofer', 'pass_chofer']
@@ -25,3 +26,9 @@ admin.site.register(Colegio, Colegio_Admin)
 class Tarifa_Admin(admin.ModelAdmin):
 	list_display = ['id_barrio', 'id_colegio', 'precio']
 admin.site.register(Tarifa, Tarifa_Admin)
+
+class UserAdmin(admin.ModelAdmin):
+    list_display = ('id', 'email', 'first_name', 'last_name')
+    list_filter = ('is_staff', 'is_superuser')
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
