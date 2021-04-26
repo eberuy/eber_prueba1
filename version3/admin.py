@@ -7,7 +7,7 @@ class ChoferAdmin(admin.ModelAdmin):
 admin.site.register(Chofer, ChoferAdmin)
 
 class ContratoAdmin(admin.ModelAdmin):
-	list_display = ['id_contrato', 'id_chofer', 'id_usuario', 'estado', 'direccion', 'barrio', 'destino', 'cant_asientos', 'comentarios', 'telefono']
+	list_display = ['id_contrato', 'id_chofer', 'id_usuario', 'estado', 'direccion', 'barrio', 'destino', 'cant_asientos', 'comentarios', 'telefono', 'fecha', 'hora']
 admin.site.register(Contrato, ContratoAdmin)
 
 class Barrio_Admin(admin.ModelAdmin):
